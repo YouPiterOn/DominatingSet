@@ -8,8 +8,7 @@ namespace GreedyDeletionProcedure
         {
             var myGraph = new Graph(new GraphGenerationOptions()
             {
-                Size = 6,
-                IsConnected = true,
+                Size = 5,
                 MaxConnections = 1,
                 LoopAllowed = false
             });

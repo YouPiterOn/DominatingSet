@@ -1,5 +1,5 @@
+using System.Diagnostics;
 using System.Runtime.InteropServices;
-
 namespace GreedyDeletionProcedure;
 
 public class Graph
@@ -57,6 +57,9 @@ public class Graph
 
     public void GetDomSet()
     {
+        Stopwatch stopwatch = new Stopwatch();
+        stopwatch.Start();
+        
         List<Node> dominatingSet = Nodes.ToList();
         while (true)
         {
@@ -79,7 +82,8 @@ public class Graph
             var pair = gdpValues.First(x => x.Value == gdpValues.Max(y => y.Value));
             dominatingSet.Remove(pair.Key);
         }
-
+        stopwatch.Stop();
+        
         foreach (var node in dominatingSet)
         {
             Console.Write((Array.FindIndex(Nodes, x => x == node)+1) + " : ");
@@ -89,5 +93,9 @@ public class Graph
             }
             Console.WriteLine();
         }
+        
+        TimeSpan elapsed = stopwatch.Elapsed;
+
+        Console.WriteLine($"Elapsed time: {elapsed.TotalMilliseconds} ms");
     }
 }
